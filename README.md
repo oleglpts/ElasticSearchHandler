@@ -7,7 +7,7 @@ How to install
 --------------
 
 * `pip install git+git://github.com/oleglpts/ElasticSearchHandler.git` or
-* `pip install ElasticSearchHandler` after registration
+* `pip install ElasticSearchHandler`
 
 
 Example:
@@ -52,6 +52,47 @@ Example:
         for _ in range(5):
             other_logger.info('Hello, world!')
             log_json(f"message {datetime.now().strftime('%d-%m-%Y %H:%M:%S%Z')}", comment='comment')
+
+Class documentation:
+-----------------------------------------
+
+ElasticSearchHandler.constructor
+
+
+    * def __init__(self,
+          level: int = INFO,
+          index: str = 'log',
+          scheme: str = 'http',
+          hosts: tuple = (getenv('ELASTICSEARCH_SERVICE_HOST', 'localhost'),),
+          port: int = getenv('ELASTICSEARCH_SERVICE_PORT', 9200),
+          http_auth: tuple = None,
+          cert_file: str = None) -> None
+
+Parameters:
+  
+        level – logging level (default: logging.INFO)
+        index – Elasticsearch index name for log (default: 'log')
+        scheme – protocol (default: 'http')
+        hosts – Elasticsearch hosts (default: environment variable ELASTICSEARCH_SERVICE_HOST or 'localhost')
+        port – Elasticsearch port (default: environment variable ELASTICSEARCH_SERVICE_PORT or 9200)
+        http_auth – authentication data (default: None, example: ('user', 'secret'))
+        cert_file – path to client certificate (default: None)
+
+
+ElasticSearchHandler.get_elastic_logger
+
+
+    * def get_elastic_logger(self,
+          logger_name: str,
+          logging_format: str) -> Logger
+
+Parameters:
+
+        logger_name – logger name
+        logging_format – log format
+
+    Returns:
+        logger
 
 Requirements
 ------------
